@@ -1,0 +1,23 @@
+{
+  "name": "times-two",
+  "version": "0.0.1",
+  "description": "A two-player version of the New York Times crossword!",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melaniemohn/times-two.git"
+  },
+  "homepage": "https://github.com/melaniemohn/times-two#readme",
+  "author": "Melanie",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.14.3",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

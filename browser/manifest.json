@@ -1,0 +1,32 @@
+{
+  // required
+  "name": "Times Two",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  // recommended
+  "description": "A Two-Player Version of the NYTimes Crossword",
+  "homepage_url": "https://github.com/melaniemohn/times-two",
+  "author": "Melanie Mohn",
+  "icons": {
+    "128": "crossword-icon.png"
+    // chrome will automatically resize smaller icons?
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  // type of action
+  "page_action": {
+    // other html file here?
+    // eventually use popup to start/join a room?
+    // "popup": "invite-menu.html",
+    "default_title": "Times Two: A Two-Player Version of the NYTimes Crossword"
+  },
+
+  // intent of app
+  "permissions": [
+    "background", // because we have a background script lol actually don't think so
+    "https://www.nytimes.com/crosswords/game/*/*"
+  ]
+}
