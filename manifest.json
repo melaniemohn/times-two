@@ -1,0 +1,34 @@
+{
+  // required
+  "name": "Times Two",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  // recommended
+  "description": "A Two-Player Version of the NYTimes Crossword",
+  "homepage_url": "https://github.com/melaniemohn/times-two",
+  "author": "Melanie Mohn",
+  "icons": {
+    "128": "images/crossword-icon.png"
+    // chrome will automatically resize smaller icons?
+  },
+  "background": {
+    // "page": "background.html", // can we just bypass this with bg scripts themselves??
+    "scripts": ["scripts/socket.io.js", "scripts/background.js"],
+    "persistent": false
+  },
+  // type of action
+  "page_action": {
+    // eventually use popup to start/join a room?
+    "default_title": "Times Two: A Two-Player Version of the NYTimes Crossword",
+    "default_icon": "images/crossword-icon.png",
+    "default_popup": "invite-menu.html"
+  },
+
+  // intent of app
+  "permissions": [
+    "background", // because we have a background script? lol actually don't think so
+    "declarativeContent", // again, not totally sure why, so probably no
+    "http://www.nytimes.com/crosswords/*"
+  ]
+}

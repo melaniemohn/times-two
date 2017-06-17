@@ -5,8 +5,8 @@
 // receive messages from background using onMessage
 
 // utility functions?
-function id(name) { return document.getElementById(name)}
-function exists(val) { return (val == null || val == undefined || val == "") ? false : true }
+// function id(name) { return document.getElementById(name)}
+// function exists(val) { return (val == null || val == undefined || val == "") ? false : true }
 
 
 function init() {

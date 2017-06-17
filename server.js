@@ -34,7 +34,7 @@ io.on('connection', function(socket) {
     console.log('Catching the event here... I wrote:', whatever);
 
     // broadcast.emit will emit an event to all other sockets except the socket that originally emitted the data
-    socket.broadcast.emit('Other person writing...', whatever); // MPM FIX THIS with the right parameters
+    socket.broadcast.emit('Other person writing', whatever); // MPM FIX THIS with the right parameters
   });
 
 });
@@ -43,9 +43,8 @@ io.on('connection', function(socket) {
 // MPM CREATE ROOMS HERE: see commented-out section of www workshop
 
 
-app.use(express.static(path.join(__dirname, 'browser')));
+app.use(express.static(path.join(__dirname, 'scripts')));
 
 app.get('/', function (req, res) {
-    // change this: I don't want to send this html, I want to send it... to the background script?
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'background.html'));
 });
