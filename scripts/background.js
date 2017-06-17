@@ -1,31 +1,8 @@
 
-// OKAY so first make sure chrome is on the right page
-// LOL just kidding I apparently didn't need onInstalled
-// chrome.runtime.onInstalled.addListener(function() {
-//   // Replace all rules ...
-//   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-//     // With a new rule ...
-//     chrome.declarativeContent.onPageChanged.addRules([
-//       {
-//         conditions: [
-//           new chrome.declarativeContent.PageStateMatcher({
-//             pageUrl: { urlContains: 'www\.nytimes\.com/crosswords/game' },
-//           })
-//         ],
-//         // And shows the extension's page action.
-//         actions: [ new chrome.declarativeContent.ShowPageAction() ]
-//       }
-//     ]);
-//   });
-// });
 
-
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//   chrome.tabs.executeScript({
-//     code: 'document.body.style.backgroundColor="red"'
-//   });
-// });
-
+// this onClicked won't fire if there's also a popup
+// for now, comment out the popup in the manifest, just to get things wired up
+// eventually, move this logic to the popup.js script...??
 chrome.pageAction.onClicked.addListener(function(tab) {
   console.log('got in here at least');
   chrome.tabs.executeScript(null, {file: "content.js"});
@@ -33,8 +10,6 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
 });
 
-
-// chrome.pageAction.whatever???
 
 // MPM general approach
 // basically, this works like browser > app.js in www workshop
@@ -54,10 +29,6 @@ chrome.extension.onMessage.addListener(
   }
 )
 
-// idk but not actually a click
-// function click(event) {
-//  // ...
-// }
 
 
 // SOCKETS

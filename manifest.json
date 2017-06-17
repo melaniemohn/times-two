@@ -25,7 +25,7 @@
     // eventually use popup to start/join a room?
     "default_title": "Times Two",
     "default_icon": "images/crossword-icon.png",
-    "default_popup": "popup.html"
+    // "default_popup": "popup.html"
   },
 
   // intent of app
