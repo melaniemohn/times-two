@@ -30,12 +30,12 @@ io.on('connection', function(socket) {
   // HERE is where server will receive data from the client
   // then, broadcast that data to all other connected clients
   // MPM FIX THIS we want a different thing than on drawing...
-  socket.on('Chelsea', function(whatever) { // because HANDLER lolol
-    console.log('Catching the event here... I wrote:', whatever);
+  socket.on('First person writing', function(letter) {
+    console.log('Catching the event here... I added the letter:', letter);
 
     // broadcast.emit will emit an event to all other sockets except the socket that originally emitted the data
     // MPM CHANGE THIS BACK to socket.broadcast.emit, but using .emit for testing from one browser window
-    socket.emit('Other person writing', whatever); // MPM FIX THIS with the right parameters
+    socket.emit('Other person wrote', letter); // MPM FIX THIS with the right parameters
   });
 
 });

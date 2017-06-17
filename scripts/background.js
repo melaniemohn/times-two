@@ -1,7 +1,5 @@
-// okay we need to USE these scripts in the background html page
-// use fetch or XMLHttpRequest to send a request to local server
 
-// OKAY so first make sure chrome is on the right page lol
+// OKAY so first make sure chrome is on the right page
 chrome.runtime.onInstalled.addListener(function() {
   // Replace all rules ...
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -21,14 +19,16 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 
-// check whether the tab has updated (VIA A MESSAGE??)
+// MPM general approach
+// basically, this works like browser > app.js in www workshop
+// check whether the tab has updated
+    // pass info from content to background VIA A MESSAGE
 // intercept the updated info and then emit it to other user(s)
-// basically, this serves the same purpose as browser > app.js in workshop
 
 
 // MESSAGES MAYBE IDK IDK
 // in the past, in socket.on, we've used document.getElementById
-// we're gonna have to do something else, using messages
+// put this logic in the content script? and then send message?
 
 function getLetter() {
   chrome.extension.sendRequest({
@@ -39,9 +39,6 @@ function getLetter() {
 }
 
 function putLetter(letter) { /* ... */}
-
-// and then I think it's the fetch_letter func we'll define in here???
-// which is the thing that makes an XMLHttpRequest
 
 
 chrome.extension.onMessage.addListener(
@@ -56,29 +53,32 @@ chrome.extension.onMessage.addListener(
 // }
 
 
+// SOCKETS
+// wrap all of this in an onMessage that's started above
+// this socket object will send messages to our server
+// two events: first person adding letter, and other person adding
 
-// SOCKETS I GUESS AHHHH
+console.log('window object:', window);
 
+var socket = io('http://localhost:8080');
 // contact the server to request a new socket connection
 // when that socket connection is established, the browser's socket reference will emit a 'connect' event
-// window.location describes the URL of the current page?
-// this socket object will send messages to our server
 
-console.log('window? lol idk', window);
-
-// var io = require("socket.io-client")
-// var socket = io(window.location.origin);
-var socket = io("http://localhost:8080");
-
-socket.on('connect', function() { //Handler
+socket.on('connect', function() {
   console.log('A persistent, two-way connection to the server! yay!');
-  socket.emit('Chelsea', {whatever: 'Ugh ugh ugh'}); // Emitter
+  // socket.emit('First person writing', 'whatever');
 });
 
-socket.on('Other person writing', function() { //Handler
-  console.log('lol writing!');
+// make .on associated with a function we define in content script?
+socket.on('First person writing', function(letter) {
+  socket.emit('First person wrote')
+  console.log('I added a letter!');
 });
 
-// where does the the original typing get emitted from?
-// in www, it was a draw event emitted in whiteboard.js
-// so we did whiteboard.on('draw')...
+socket.on('Other person wrote', function() {
+  console.log('They added a letter!');
+  // in here, (call a function to) send message to content script
+  // instead of whiteboard.draw, I think we want window.addLetter or something?
+      // or maybe chrome.pageAction??
+});
+

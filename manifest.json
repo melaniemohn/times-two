@@ -10,12 +10,14 @@
   "author": "Melanie Mohn",
   "icons": {
     "128": "images/crossword-icon.png"
-    // chrome will automatically resize smaller icons?
+    // chrome will automatically resize smaller icons yay
   },
   "background": {
-    // "page": "background.html", // just bypass this with bg scripts themselves?? actually that seems to break it?
     "scripts": ["scripts/socket.io.js", "scripts/background.js"],
-    "persistent": false
+    "persistent": true
+  },
+  "content": {
+    "scripts": ["scripts/jquery.js", "scripts/content.js"]
   },
   // type of action
   "page_action": {
