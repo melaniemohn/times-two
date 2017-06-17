@@ -13,16 +13,16 @@
     // chrome will automatically resize smaller icons?
   },
   "background": {
-    // "page": "background.html", // can we just bypass this with bg scripts themselves??
-    "scripts": ["scripts/socket.io.js", "scripts/background.js"],
+    "page": "background.html", // can we just bypass this with bg scripts themselves?? actually that seems to break it?
+    // "scripts": ["scripts/socket.io.js", "scripts/background.js"],
     "persistent": false
   },
   // type of action
   "page_action": {
     // eventually use popup to start/join a room?
-    "default_title": "Times Two: A Two-Player Version of the NYTimes Crossword",
+    "default_title": "Times Two",
     "default_icon": "images/crossword-icon.png",
-    "default_popup": "invite-menu.html"
+    "default_popup": "popup.html"
   },
 
   // intent of app

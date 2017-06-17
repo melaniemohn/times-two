@@ -1,6 +1,8 @@
 // content script is the JS we inject into the page
 // this is the thing that can actually touch the DOM
 
+
+
 // use message passing to communicate with background.js??
 // receive messages from background using onMessage
 

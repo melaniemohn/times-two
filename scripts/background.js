@@ -67,7 +67,8 @@ chrome.extension.onMessage.addListener(
 console.log('window? lol idk', window);
 
 // var io = require("socket.io-client")
-var socket = io(window.location.origin);
+// var socket = io(window.location.origin);
+var socket = io("http://localhost:8080");
 
 socket.on('connect', function() { //Handler
   console.log('A persistent, two-way connection to the server! yay!');

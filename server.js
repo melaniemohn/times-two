@@ -34,7 +34,8 @@ io.on('connection', function(socket) {
     console.log('Catching the event here... I wrote:', whatever);
 
     // broadcast.emit will emit an event to all other sockets except the socket that originally emitted the data
-    socket.broadcast.emit('Other person writing', whatever); // MPM FIX THIS with the right parameters
+    // MPM CHANGE THIS BACK to socket.broadcast.emit, but using .emit for testing from one browser window
+    socket.emit('Other person writing', whatever); // MPM FIX THIS with the right parameters
   });
 
 });
