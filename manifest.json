@@ -16,9 +16,10 @@
     "scripts": ["scripts/socket.io.js", "scripts/background.js"],
     "persistent": true
   },
-  "content": {
-    "scripts": ["scripts/jquery.js", "scripts/content.js"]
-  },
+  // key is content_scripts, not content
+  // "content_scripts": [{
+  //   "js": ["scripts/jquery.js", "scripts/content.js"]
+  // }],
   // type of action
   "page_action": {
     // eventually use popup to start/join a room?
@@ -29,8 +30,9 @@
 
   // intent of app
   "permissions": [
-    "background", // because we have a background script? lol actually don't think so
-    "declarativeContent", // again, not totally sure why, so probably no
+    "activeTab",
+    // "background", // because we have a background script? lol actually don't think so
+    // "declarativeContent", // again, not totally sure why, so probably no
     "http://www.nytimes.com/crosswords/*"
   ]
 }

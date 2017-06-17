@@ -1,23 +1,40 @@
 
 // OKAY so first make sure chrome is on the right page
-chrome.runtime.onInstalled.addListener(function() {
-  // Replace all rules ...
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    // With a new rule ...
-    chrome.declarativeContent.onPageChanged.addRules([
-      {
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { urlContains: 'www\.nytimes\.com/crosswords/game' },
-          })
-        ],
-        // And shows the extension's page action.
-        actions: [ new chrome.declarativeContent.ShowPageAction() ]
-      }
-    ]);
-  });
+// LOL just kidding I apparently didn't need onInstalled
+// chrome.runtime.onInstalled.addListener(function() {
+//   // Replace all rules ...
+//   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+//     // With a new rule ...
+//     chrome.declarativeContent.onPageChanged.addRules([
+//       {
+//         conditions: [
+//           new chrome.declarativeContent.PageStateMatcher({
+//             pageUrl: { urlContains: 'www\.nytimes\.com/crosswords/game' },
+//           })
+//         ],
+//         // And shows the extension's page action.
+//         actions: [ new chrome.declarativeContent.ShowPageAction() ]
+//       }
+//     ]);
+//   });
+// });
+
+
+// chrome.browserAction.onClicked.addListener(function(tab) {
+//   chrome.tabs.executeScript({
+//     code: 'document.body.style.backgroundColor="red"'
+//   });
+// });
+
+chrome.pageAction.onClicked.addListener(function(tab) {
+  console.log('got in here at least');
+  chrome.tabs.executeScript(null, {file: "content.js"});
+  console.log('content script loaded!');
+
 });
 
+
+// chrome.pageAction.whatever???
 
 // MPM general approach
 // basically, this works like browser > app.js in www workshop
@@ -29,16 +46,6 @@ chrome.runtime.onInstalled.addListener(function() {
 // MESSAGES MAYBE IDK IDK
 // in the past, in socket.on, we've used document.getElementById
 // put this logic in the content script? and then send message?
-
-function getLetter() {
-  chrome.extension.sendRequest({
-    'action': 'fetch_letter',
-    'url': 'http://localhost:8080/'},
-    function(response) { putLetter(response);
-  });
-}
-
-function putLetter(letter) { /* ... */}
 
 
 chrome.extension.onMessage.addListener(

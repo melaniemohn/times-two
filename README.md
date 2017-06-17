@@ -30,3 +30,6 @@ dark purples (other user's input)
 lavender (other user's highlight)
 - e1dbec
 
+
+add some html using jQuery
+font color="#9c27b0"
