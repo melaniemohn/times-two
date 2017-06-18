@@ -3,9 +3,21 @@ console.log('inside the content script')
 
 
 // helper / utility functions
-// getLetter and/or putLetter???
+// getLetter and/or putLetter??? plus myHighlight and getHighlight?
 // use these to communicate with background script??
 
+
+// what's the order of operations here? should the port connection open before the DOM loads? wrap one in the other?
+// make a persistent, two-way connection with the background script
+var port = chrome.runtime.connect({ name: 'puzzport' });
+
+port.onMessage.addListener(function(message, sender) { // what's the sender param doing?
+  if (message.greeting === 'hello'){
+    console.log('opened the connection! message: ', message.greeting);
+  }
+});
+
+// then listen for messages using port.onMessage.addListener()
 
 // define separate functions for myHighlight and otherHighlight?
 function highlight(event) { // to change color of own active square
@@ -28,7 +40,7 @@ function highlight(event) { // to change color of own active square
 		console.log('highlighted array', highlighted);
 
 		// now, send this info to the background script!
-
+		port.postMessage({ highlight: highlighted });
 }
 
 
@@ -74,17 +86,5 @@ $(document).ready(function() {
 
 
 });
-
-
-// use message passing to communicate DOM change with background.js
-	// chrome.runtime.sendMessage( /* ... */ )
-			// 	chrome.extension.sendMessage({greeting: 'hello'}, function(response) {
-			// 	  console.log(response.farewell);
-			// 	});
-
-
-// receive messages from background using onMessage
-	// chrome.runtime.onMessage.addListener( /* ... */ )
-
 
 

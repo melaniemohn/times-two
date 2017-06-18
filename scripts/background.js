@@ -3,14 +3,21 @@
 // intercept the updated info from message and then emit it to other user(s)
 // for now, try to get some console.logs wired up in here?
 
+chrome.runtime.onConnect.addListener(function(port) {
+  port.postMessage({ greeting: 'hello' });
+});
 
+// then listen for messages using port.onMessage.addListener()
+// example used (request, sender, sendResponse) as params
 chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    // ...
+  function(message, sender, sendResponse) { // again, what's up with the other params
+    // ... now, if message.highlighted? or...
+    if (message.highlight) {
+    console.log('got your highlight: ', message.highlight);
+    }
   }
 );
 
-// from the docs: To send messages to content scripts, use tabs.sendMessage.
 
 
 // SOCKETS
