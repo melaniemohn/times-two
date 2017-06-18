@@ -10,16 +10,34 @@ console.log('inside the content script')
 // define separate functions for myHighlight and otherHighlight?
 function highlight(event) { // to change color of own active square
 	console.log('event: ', event);
+
+		// handling the color changing on own screen
 		$('.flex-cell').not('.black').css('background-color', 'white');
 		$('.highlighted').css('background-color', '#a7d8ff');
 		$('.active').css('background-color', '#3abfff');
-		console.log('cell index: ', $('.active').index('.flex-cell'));
+
+		// get index of active cell
+		let activeIndex = $('.active').index('.flex-cell');
+		console.log('active cell index: ', activeIndex);
+
+		// get array with index of each highlighted cell
+		let highlighted = [];
+		$('.highlighted').map(function() {
+			highlighted.push($(this).index('.flex-cell'));
+		});
+		console.log('highlighted array', highlighted);
+
+		// now, send this info to the background script!
+
 }
+
 
 // for otherHighlight, also need to get that info with a timeout...?
 // use .each here?
 function otherHighlight(){ /*...*/ }
 
+
+// just do $(function() { /*...*/ }); as shorthand?
 $(document).ready(function() {
 
 	// here, capture the actual data and send it to background in a message
@@ -31,15 +49,15 @@ $(document).ready(function() {
 	});
 
 	// might be cleaner to exclude black cells here, but otoh, it's lovely to be able to use the square grid for dimensions / count
-	$('.flex-cell').each(function(square) {
-		console.log('each square', square);
-		// maybe assign IDs in here??
-	});
+	// $('.flex-cell').each(function(square) {
+	// 	console.log('each square', square);
+	// 	// maybe assign IDs in here??
+	// });
 
 
 	// I hate this setTimeout, because it's clunky
-	// but I hate on 'click' because it doesn't actually track the active cell as it changes
-		// (in response to an arrow key, say, but also WHEN SOMEONE IS TYPING)
+	// but I REALLY hate using 'click' because it doesn't actually track the active cell as it changes
+		// (like, in response to an arrow key, say, but also WHEN SOMEONE IS TYPING AHHHH)
 	$('.flex-cell').on('click', function(event) {
 		setTimeout(highlight, 5, event);
 	});
@@ -54,10 +72,6 @@ $(document).ready(function() {
 	// if this works, abstract these trigger handlers into a more general event??
 	// $('.flex-cell').triggerHandler('keypress');
 
-
-	$('.highlighted').each(function(square) {
-		console.log('each highlight', square);
-	});
 
 });
 

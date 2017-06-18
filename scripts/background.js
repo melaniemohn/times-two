@@ -1,44 +1,20 @@
 
-
-// this onClicked won't fire if there's also a popup
-// for now, comment out the popup in the manifest, just to get things wired up
-// eventually, move this logic to the popup.js script...??
-// first argument, tabID, is optional; defaults to the active tab of the current window
-// chrome.pageAction.onClicked.addListener(function(tab) {
-//   chrome.tabs.executeScript(null, { file: "scripts/jquery.js" });
-//   chrome.tabs.executeScript(null, { file: "scripts/content.js" });
-//   console.log('content script loaded!');
-
-// });
-
-  // chrome.tabs.executeScript(null, { file: "scripts/jquery.js" });
-  // chrome.tabs.executeScript(null, { file: "scripts/content.js" });
-  // console.log('content script loaded!');
-
-
-// MPM general approach
-// basically, this works like browser > app.js in www workshop
-// check whether the tab has updated
-    // pass info from content to background VIA A MESSAGE
-// intercept the updated info and then emit it to other user(s)
-
-
-// MESSAGES MAYBE IDK IDK
-// in the past, in socket.on, we've used document.getElementById
-// put this logic in the content script? and then send message?
+// content script will pass info VIA A MESSAGE
+// intercept the updated info from message and then emit it to other user(s)
+// for now, try to get some console.logs wired up in here?
 
 
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
     // ...
   }
-)
+);
 
+// from the docs: To send messages to content scripts, use tabs.sendMessage.
 
 
 // SOCKETS
-// wrap all of this in an onMessage that's started above
-// this socket object will send messages to our server
+// this socket object will send messages to server... wrap all of this in an onMessage?
 // two events: first person adding letter, and other person adding
 
 /*
