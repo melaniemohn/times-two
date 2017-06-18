@@ -3,12 +3,17 @@
 // this onClicked won't fire if there's also a popup
 // for now, comment out the popup in the manifest, just to get things wired up
 // eventually, move this logic to the popup.js script...??
-chrome.pageAction.onClicked.addListener(function(tab) {
-  console.log('got in here at least');
-  chrome.tabs.executeScript(null, {file: "content.js"});
-  console.log('content script loaded!');
+// first argument, tabID, is optional; defaults to the active tab of the current window
+// chrome.pageAction.onClicked.addListener(function(tab) {
+//   chrome.tabs.executeScript(null, { file: "scripts/jquery.js" });
+//   chrome.tabs.executeScript(null, { file: "scripts/content.js" });
+//   console.log('content script loaded!');
 
-});
+// });
+
+  // chrome.tabs.executeScript(null, { file: "scripts/jquery.js" });
+  // chrome.tabs.executeScript(null, { file: "scripts/content.js" });
+  // console.log('content script loaded!');
 
 
 // MPM general approach
@@ -36,6 +41,7 @@ chrome.extension.onMessage.addListener(
 // this socket object will send messages to our server
 // two events: first person adding letter, and other person adding
 
+/*
 console.log('window object:', window);
 
 var socket = io('http://localhost:8080');
@@ -59,4 +65,4 @@ socket.on('Other person wrote', function() {
   // instead of whiteboard.draw, I think we want window.addLetter or something?
       // or maybe chrome.pageAction??
 });
-
+*/

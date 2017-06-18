@@ -16,23 +16,22 @@
     "scripts": ["scripts/socket.io.js", "scripts/background.js"],
     "persistent": true
   },
-  // key is content_scripts, not content
-  // "content_scripts": [{
-  //   "js": ["scripts/jquery.js", "scripts/content.js"]
-  // }],
+  "content_scripts": [{
+    "matches": ["https://www.nytimes.com/crosswords/*"],
+    "js": ["scripts/jquery.js", "scripts/content.js"]
+  }],
   // type of action
   "page_action": {
     // eventually use popup to start/join a room?
     "default_title": "Times Two",
     "default_icon": "images/crossword-icon.png",
-    // "default_popup": "popup.html"
-  },
+    "default_popup": "popup.html"
+  }//,
 
   // intent of app
-  "permissions": [
-    "activeTab",
-    // "background", // because we have a background script? lol actually don't think so
-    // "declarativeContent", // again, not totally sure why, so probably no
-    "http://www.nytimes.com/crosswords/*"
-  ]
+  // "permissions": [
+  //   "activeTab",
+  //   // "declarativeContent", // again, not totally sure why, so probably no
+  //   "http://www.nytimes.com/crosswords/*"
+  // ]
 }

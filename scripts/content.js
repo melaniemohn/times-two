@@ -1,11 +1,9 @@
 // content script is the JS we inject into the page, and it can actually touch the DOM
 
-// for letters, listen for a keydown event?
+// for letters, listen for a keydown event? or just DOMSubtreeModified (?)
 // and for highlight, listen for click OR an arrow key???
 
-// first argument, tabID, is optional; defaults to the active tab of the current window
-chrome.tabs.executeScript(null, {file: "content.js"});
-console.log('content script loaded from... content script lol no');
+console.log('lol content')
 
 // okay, but for guess and square these aren't IDs....
 var guess = document.getElementById("guess");
@@ -36,15 +34,17 @@ var highlights = $(".highlight").each(function(square){
 
 // write an event emitter that uses jQuery to track changes in the DOM
 // use a utility function from jQuery (index!!) to figure out WHICH of the huge # of squares is updating
-$(document).ready(function() { /* . . . */ }
+$(document).ready(function() {
+	console.log('ready or not (no, ready)')
+})
 
 	// listen for changes in DOM using jQuery
 	// use message passing to communicate this change with background.js
-	chrome.runtime.sendMessage( /* ... */ )
+	// chrome.runtime.sendMessage( /* ... */ )
 
 
 	// receive messages from background using onMessage
-	chrome.runtime.onMessage.addListener( /* ... */ )
+	// chrome.runtime.onMessage.addListener( /* ... */ )
 
 
 
