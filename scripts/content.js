@@ -73,17 +73,15 @@ function makeOtherGuessDiv(){
  	// maybe play with this size (or alignment??) to get shadow effect???
 	let size = $('.guess').css('font-size');
 	console.log(size); // for some reason, even on puzzles of different sizes, this is consistently returning something 3px too big
-	console.log('num string', size.slice(0, -2)) // taking off 'px', then use this for type coercion below
-	let sizeNum = size.slice(0, -2) - 3;
-	console.log('size number', sizeNum);
-	let sizeFix = sizeNum + 'px';
-	console.log('new size lol', sizeFix)
-	let div = '<div class="other-guess" style="font-size: ' + sizeFix + '; line-height: ' + sizeFix + '; color: red"></div>';
+	// not sure how this gets resized from 77 to 74 in the browser, but I'll take it
+	// instead of appending all the goofy css shit to other-guess, put it in a separate css file
+	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + '; color: red; position: absolute; bottom: 0"></div>';
 	return div;
 }
 
 
-
+    // position: absolute;
+    // bottom: 0
 
 // just do $(function() { /*...*/ }); as shorthand?
 $(document).ready(function() {

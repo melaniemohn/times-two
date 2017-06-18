@@ -20,6 +20,7 @@ then, change other user's input to dark purple font
 and change their highlighted cells to lavender
 don't worry about tracking their active cell
 
+[put this in a separate css file]
 
 colors (for my own reference)
     NYT current
