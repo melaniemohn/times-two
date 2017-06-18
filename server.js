@@ -32,17 +32,18 @@ io.on('connection', function(socket) {
 
   socket.on('myLetter', function(guess) {
     console.log('Catching the event... I guessed: ', guess);
-    socket.broadcast.emit('otherLetter', guess); // BROADCAST THO
+    socket.broadcast.emit('otherLetter', guess);
   });
 
   socket.on('myHighlight', function(highlight) {
     console.log('Catching the event... I highlighted: ', highlight);
-  })
+    socket.emit('otherHighlight', highlight); // BROADCAST THO
+  });
 
 });
 
 
-// MPM CREATE ROOMS HERE: see commented-out section of www workshop
+// OKAY COOOL CREATE ROOMS HERE: see commented-out section of www workshop
 
 
 app.use(express.static(path.join(__dirname, 'scripts')));
