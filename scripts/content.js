@@ -41,6 +41,7 @@ function highlight(event) { // to change color of own active square
 
 		// now, send this info to the background script!
 		port.postMessage({ highlight: highlighted });
+		return highlighted;
 }
 
 
@@ -58,6 +59,10 @@ $(document).ready(function() {
 	$('.guess').on('DOMSubtreeModified', function() {
 		console.log('guess', $(this).html());
 		console.log('index', $(this).parent().index('.flex-cell'));
+		// then post message to bg script here
+		let guess = $(this).html();
+		let index = $(this).parent().index('.flex-cell');
+		port.postMessage({ guess: [index, guess] });
 	});
 
 	// might be cleaner to exclude black cells here, but otoh, it's lovely to be able to use the square grid for dimensions / count
@@ -84,7 +89,5 @@ $(document).ready(function() {
 	// if this works, abstract these trigger handlers into a more general event??
 	// $('.flex-cell').triggerHandler('keypress');
 
-
 });
-
 

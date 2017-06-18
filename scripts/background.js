@@ -5,19 +5,34 @@
 
 chrome.runtime.onConnect.addListener(function(port) {
   port.postMessage({ greeting: 'hello' });
+
+  port.onMessage.addListener(
+  function(message, sender, response) {
+    if (message.highlight) {
+      console.log('got your highlight: ', message.highlight);
+    }
+    else if (message.guess) {
+      console.log('got your guess: ', message.guess);
+    }
+  }
+);
+
 });
 
+/*
 // then listen for messages using port.onMessage.addListener()
 // example used (request, sender, sendResponse) as params
-chrome.extension.onMessage.addListener(
-  function(message, sender, sendResponse) { // again, what's up with the other params
+// chrome.extension.onMessage.addListener(
+//   function(request, sender, sendResponse) { // again, what's up with the params
+port.onMessage.addListener(
+  function(message, sender, response){
     // ... now, if message.highlighted? or...
     if (message.highlight) {
     console.log('got your highlight: ', message.highlight);
     }
   }
 );
-
+*/
 
 
 // SOCKETS
