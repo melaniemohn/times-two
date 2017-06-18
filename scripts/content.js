@@ -11,13 +11,27 @@ console.log('inside the content script')
 // make a persistent, two-way connection with the background script
 var port = chrome.runtime.connect({ name: 'puzzport' });
 
+// then listen for messages using port.onMessage.addListener()
 port.onMessage.addListener(function(message, sender) { // what's the sender param doing?
   if (message.greeting === 'hello'){
     console.log('opened the connection! message: ', message.greeting);
   }
+  else if (message.otherLetter) {
+  	console.log('other guess from background: ', message.otherLetter);
+  	return otherGuess(message.otherLetter);
+  }
 });
 
-// then listen for messages using port.onMessage.addListener()
+
+function otherGuess(guessArray){
+	// we're passing in an array with index of flex-cell, plus letter
+	// get the cell by its index, then update inner html
+	console.log('got guess from other player: ', guessArray);
+	let index = guessArray[0];
+	let letter = guessArray[1];
+	$('.flex-cell').eq(index).children('.other-guess').html(letter);
+
+}
 
 // define separate functions for myHighlight and otherHighlight?
 function highlight(event) { // to change color of own active square
@@ -49,16 +63,40 @@ function highlight(event) { // to change color of own active square
 // use .each here?
 function otherHighlight(){ /*...*/ }
 
+function makeOtherGuessDiv(){
+	// here's the HTML from guess... pull off font-size and line-height, change font color??
+	// since font-size and line-height will always match, just need to pull that off once
+	// then return a div with class other-guess, same font-size and line-height
+	// and add new font-color (right name?)
+	// <div class="guess" style="font-size: 74.7778px; line-height: 74.7778px;"></div>
+	let size = $('.guess').css('font-size');
+	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + 'color: red';
+	return div;
+}
+
+
+
 
 // just do $(function() { /*...*/ }); as shorthand?
 $(document).ready(function() {
+
+	// here, create an additional div that's a sibling of guess
+	// this way, we can store the guess info from other player without firing our guess.on below
+	// how to figure out text size??
+	// don't clone .guess, because the whole point is we don't want that event handler on this
+	// instead, pull that off of .guess and save it as a variable?
+	// maybe even pass in a function to .append?
+
+	$('.flex-cell').append(makeOtherGuessDiv());
+
+// <div class="guess" style="font-size: 74.7778px; line-height: 74.7778px;"></div>
 
 	// here, capture the actual data and send it to background in a message
 	// get the cell ID, plus the actual letter that was guessed
 	// to get index, use .parent(), which only traverses up one level (as opposed to parents())
 	$('.guess').on('DOMSubtreeModified', function() {
-		console.log('guess', $(this).html());
-		console.log('index', $(this).parent().index('.flex-cell'));
+		// console.log('guess', $(this).html());
+		// console.log('index', $(this).parent().index('.flex-cell'));
 		// then post message to bg script here
 		let guess = $(this).html();
 		let index = $(this).parent().index('.flex-cell');
