@@ -69,8 +69,16 @@ function makeOtherGuessDiv(){
 	// then return a div with class other-guess, same font-size and line-height
 	// and add new font-color (right name?)
 	// <div class="guess" style="font-size: 74.7778px; line-height: 74.7778px;"></div>
+ 	// we want size of other guess to be same as (or at least relative to) size of own guess
+ 	// maybe play with this size (or alignment??) to get shadow effect???
 	let size = $('.guess').css('font-size');
-	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + '; color: red"></div>';
+	console.log(size); // for some reason, even on puzzles of different sizes, this is consistently returning something 3px too big
+	console.log('num string', size.slice(0, -2)) // taking off 'px', then use this for type coercion below
+	let sizeNum = size.slice(0, -2) - 3;
+	console.log('size number', sizeNum);
+	let sizeFix = sizeNum + 'px';
+	console.log('new size lol', sizeFix)
+	let div = '<div class="other-guess" style="font-size: ' + sizeFix + '; line-height: ' + sizeFix + '; color: red"></div>';
 	return div;
 }
 

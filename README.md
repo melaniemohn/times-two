@@ -14,31 +14,27 @@ because whatever
 
 user's own text will be black with blue highlights (so, the default)
 but, change the color of their active cell from yellow to... brighter blue?
-	div.flex-cell.highlighted.active
+	nb: this also involves changing the color of the text highlight. I haven't done this, which is why some letters will have a weird halo effect
 
 then, change other user's input to dark purple font
 and change their highlighted cells to lavender
 don't worry about tracking their active cell
 
 
-light blue (active highlight cell)
-in their scss: .flex-cell.active background-color: #FFDA00
-but .flex-cell.highlighted.active ???
+colors (for my own reference)
     NYT current
-    - active background: FFDA00
-    - highlight background: A7D8FF
+    - yellow active background: FFDA00
+    - light blue highlight background: A7D8FF
 
-brighter blues
-- 3abfff
+	brighter blues
+	- 3abfff
 
-dark purples (other user's input)
-- 600191
-- 673ab7 (not bright enough)
-- 9c27b0 (better)
+	dark purples (other user's input)
+	- 600191
+	- 673ab7 (not bright enough)
+	- 9c27b0 (better)
 
-lavender (other user's highlight)
-- e1dbec
+	lavender (other user's highlight)
+	[eventually]
+	- e1dbec
 
-
-add some styling using jQuery
-font color="#9c27b0"
