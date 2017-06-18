@@ -18,6 +18,7 @@
   },
   "content_scripts": [{
     "matches": ["https://www.nytimes.com/crosswords/*"],
+    "css": ["style.css"],
     "js": ["scripts/jquery.js", "scripts/content.js"]
   }],
   // type of action

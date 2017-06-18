@@ -67,21 +67,16 @@ function makeOtherGuessDiv(){
 	// here's the HTML from guess... pull off font-size and line-height, change font color??
 	// since font-size and line-height will always match, just need to pull that off once
 	// then return a div with class other-guess, same font-size and line-height
-	// and add new font-color (right name?)
-	// <div class="guess" style="font-size: 74.7778px; line-height: 74.7778px;"></div>
  	// we want size of other guess to be same as (or at least relative to) size of own guess
  	// maybe play with this size (or alignment??) to get shadow effect???
 	let size = $('.guess').css('font-size');
 	console.log(size); // for some reason, even on puzzles of different sizes, this is consistently returning something 3px too big
 	// not sure how this gets resized from 77 to 74 in the browser, but I'll take it
 	// instead of appending all the goofy css shit to other-guess, put it in a separate css file
-	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + '; color: red; position: absolute; bottom: 0"></div>';
+	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + '"></div>';
 	return div;
 }
 
-
-    // position: absolute;
-    // bottom: 0
 
 // just do $(function() { /*...*/ }); as shorthand?
 $(document).ready(function() {
