@@ -18,7 +18,7 @@ port.onMessage.addListener(function(message, sender) { // what's the sender para
   }
   else if (message.otherLetter) {
   	console.log('other guess from background: ', message.otherLetter);
-  	return otherGuess(message.otherLetter);
+  	otherGuess(message.otherLetter);
   }
 });
 
@@ -54,8 +54,8 @@ function highlight(event) { // to change color of own active square
 		console.log('highlighted array', highlighted);
 
 		// now, send this info to the background script!
-		port.postMessage({ highlight: highlighted });
-		return highlighted;
+		// port.postMessage({ highlight: highlighted });
+		// return highlighted;
 }
 
 
@@ -70,7 +70,7 @@ function makeOtherGuessDiv(){
 	// and add new font-color (right name?)
 	// <div class="guess" style="font-size: 74.7778px; line-height: 74.7778px;"></div>
 	let size = $('.guess').css('font-size');
-	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + 'color: red';
+	let div = '<div class="other-guess" style="font-size: ' + size + '; line-height: ' + size + '; color: red"></div>';
 	return div;
 }
 
