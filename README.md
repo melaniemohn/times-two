@@ -1,12 +1,13 @@
 # Times Two
-A two-player version of the New York Times crossword, originally designed for the "stackathon" event at Grace Hopper Academy.
+###A two-player version of the New York Times crossword.
+Originally designed for the "stackathon" event at Grace Hopper Academy.
 
 Broadly, this is a Chrome extension that connects to a Node server.
 It uses Express and socket.io, and on the front end, a ton of jQuery.
 
 
-## on Chrome extensions, generally
-The content script is the JS that gets injected into the page, and it can actually touch the DOM.  The content script listens for changes in the DOM using jQuery. The content script uses "message passing" to send this change to the background script, which in turn emits the event to the server on the back end. WebSockets let the server then broadcast that event to the other users.
+## notes on Chrome extensions
+The content script is the JS that gets injected into the page, and it can actually touch the DOM.  Here, the content script listens for changes in the DOM using jQuery. The content script uses "message passing" to send any changes to the background script, which in turn emits the event to the server on the back end. WebSockets let the server then broadcast that event to the other users.
 
 
 ## notes on events
