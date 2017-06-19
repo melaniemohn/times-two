@@ -64,6 +64,7 @@ function highlight(event) { // to change color of own active square
 
 		// handling the color changing on own screen
 		// need a way to reset to white without changing other person's
+		// instead of setting background color to white, just remove the class
 		$('.flex-cell').not('.black').css('background-color', 'white');
 		$('.highlighted').css('background-color', '#a7d8ff');
 		$('.active').css('background-color', '#3abfff');

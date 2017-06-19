@@ -1,6 +1,7 @@
 
 .other-trace {
-  border: 3px dotted;
+  /*border: 3px dotted !important;*/
+  box-shadow: inset 0px 0px 10px 3px #a7d8ff;
 }
 
 .other-guess {
@@ -28,4 +29,8 @@
 
 .flex-cell {
   border: 1px solid #696969;
+}
+
+.clue-number {
+  background-color: transparent !important;
 }
