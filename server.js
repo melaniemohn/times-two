@@ -31,13 +31,13 @@ io.on('connection', function(socket) {
   // then, broadcasts that data to all other connected clients
 
   socket.on('myLetter', function(guess) {
-    console.log('Catching the event... I guessed: ', guess);
+    console.log('Catching the guess event...', guess);
     socket.broadcast.emit('otherLetter', guess);
   });
 
   socket.on('myHighlight', function(highlight) {
-    console.log('Catching the event... I highlighted: ', highlight);
-    socket.emit('otherHighlight', highlight); // BROADCAST THO
+    console.log('Catching the highlight event...', highlight);
+    socket.broadcast.emit('otherHighlight', highlight); // BROADCAST THO
   });
 
 });
