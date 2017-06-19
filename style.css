@@ -12,6 +12,7 @@
   /*text-shadow: -2px -2px 2px #d3d3d3;*/
   text-shadow: -5px 0px 2px #d3d3d3;
   text-align: center;
+  display: none;
   position: absolute;
   bottom: 0px;
   width: 100%;

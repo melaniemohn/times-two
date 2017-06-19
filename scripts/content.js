@@ -32,7 +32,8 @@ function otherGuess(guessArray) {
 	console.log('got guess from other player: ', guessArray);
 	let index = guessArray[0];
 	let letter = guessArray[1];
-	$('.flex-cell').eq(index).children('.other-guess').html(letter);
+	$('.flex-cell').eq(index).children('.other-guess').html(letter).fadeIn(500);
+		// fix this fadeIn by adding display: none to .other-guess in css?
 }
 
 
