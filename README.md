@@ -1,9 +1,9 @@
 # Times Two
-###A two-player version of the New York Times crossword.
+A two-player version of the New York Times crossword!
 Originally designed for the "stackathon" event at Grace Hopper Academy.
 
-Broadly, this is a Chrome extension that connects to a Node server.
-It uses Express and socket.io, and on the front end, a ton of jQuery.
+At a basic level, this is a Chrome extension that connects to a Node server.
+It uses Express and socket.io, with a healthy dose of jQuery on the front end.
 
 
 ## notes on Chrome extensions
