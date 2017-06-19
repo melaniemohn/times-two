@@ -14,7 +14,6 @@ socket.on('connect', function() {
 });
 
 
-//
 // MESSAGES
 // intercept the updated game state from content script, via a message
 // then, emit it to other user(s) through socket connection
@@ -49,12 +48,4 @@ chrome.runtime.onConnect.addListener(function(port) {
 });
 
 
-/*
-socket.on('Other person wrote', function() {
-	console.log('They added a letter!');
-	// in here, (call a function to) send message to content script
-	// instead of whiteboard.draw, I think we want window.addLetter or something?
-			// or maybe chrome.pageAction??
-});
-*/
 
